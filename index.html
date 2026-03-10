@@ -8,9 +8,10 @@
     <style>
         :root {
             --primary-navy: #1a2a40;
-            --accent-blue: #4fa3d1;
+            --accent-blue: #2980b9;
             --accent-green: #5cdb95;
-            --light-gray: #f4f7f6;
+            --light-gray: #f5f7fa;
+            /* 少し青みがかった上品な極薄グレーに変更 */
             --white: #ffffff;
             --text-dark: #333333;
             --text-light: #666666;
@@ -120,13 +121,21 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 80vh;
+            /* 高さの固定(100vh)をやめ、少し狭めて横長に */
+            height: clamp(500px, 50vw, 800px);
+            /* 画面幅に応じて高さを変えることで縦のトリミングを防ぐ */
             display: flex;
-            align-items: center;
-            background: linear-gradient(rgba(26, 42, 64, 0.6), rgba(26, 42, 64, 0.6)), url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            align-items: flex-end;
+            /* 文字を全体の下寄りに配置 */
+            justify-content: center;
+            background: linear-gradient(rgba(26, 42, 64, 0.1), rgba(26, 42, 64, 0.4)), url('./images/hero_bg.jpg') center 30%/cover no-repeat;
+            background-color: var(--primary-navy);
+            /* 画像外の余白の色 */
             color: var(--white);
             text-align: center;
-            padding-top: 70px;
+            padding-bottom: 50px;
+            /* 下に隙間を空ける */
         }
 
         .hero-content {
@@ -151,20 +160,27 @@
             padding: 100px 0;
         }
 
+        /* Section Titles */
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 60px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             position: relative;
+            padding-bottom: 15px;
+            color: var(--primary-navy);
+            letter-spacing: 2px;
         }
 
         .section-title::after {
             content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-blue);
-            margin: 15px auto 0;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-navy), var(--accent-blue));
+            border-radius: 2px;
         }
 
         /* Concept */
@@ -320,21 +336,62 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .about-grid {
-                flex-direction: column;
+
+            section,
+            .bg-light {
+                padding: 60px 0;
+                /* スマホでは上下の無駄な余白を減らす */
             }
 
-            .lesson-card {
-                width: 100%;
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
             }
 
             .hero h1 {
                 font-size: 2rem;
+                line-height: 1.3;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .concept-text {
+                font-size: 0.95rem !important;
+                /* スマホでは文章量を考慮して少し小さく */
+            }
+
+            .about-grid {
+                flex-direction: column;
+                gap: 20px;
+                /* スマホでは画像とテキストの隙間を少し詰める */
+            }
+
+            .about-image {
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+                /* 画像を中央配置 */
+            }
+
+            .lesson-card {
+                width: 100%;
+                min-width: unset !important;
+                /* スマホ画面の横幅に自然に合わせる */
+                padding: 25px 20px;
             }
 
             .nav-links {
                 display: none;
-                /* スマホ用メニューは省略 */
+                /* スマホ用メニューは省略（ハンバーガーメニュー等が必要な場合は別途追加） */
+            }
+
+            /* YouTubeや各コンテンツ枠をスマホ幅にフィットさせる */
+            .concept-content-box {
+                min-width: 100% !important;
+                max-width: 100% !important;
             }
         }
     </style>
@@ -346,10 +403,10 @@
         <nav>
             <div class="logo">MUNETOSHI KUMAGAE</div>
             <ul class="nav-links">
-                <li><a href="#concept">Concept</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#lesson">Lesson</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#concept">レッスン方針</a></li>
+                <li><a href="#about">プロフィール</a></li>
+                <li><a href="#lesson">レッスン料金</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
             </ul>
         </nav>
     </header>
@@ -358,76 +415,148 @@
         <div class="hero-content container">
             <h1>あなたのテニスを、<br>もっと楽しく、もっと上へ。</h1>
             <p>初心者からトーナメント出場者まで、完全オーダーメイドのレッスン</p>
-            <a href="#contact" class="btn">体験レッスンに申し込む</a>
         </div>
     </section>
 
-    <section id="concept" class="container">
-        <h2 class="section-title">My Concept</h2>
-        <p class="concept-text">
-            テニスは、生涯楽しめる素晴らしいスポーツです。<br><br>
-            しかし、「なかなかラリーが続かない」「怪我が絶えない」「試合で勝てない」といった悩みを抱えている方も多くいらっしゃいます。<br>
-            私のレッスンでは、一人ひとりの骨格や筋力、プレースタイルに合わせた「無理のない美しいフォーム作り」と「テニスの楽しさ」を最優先に指導しています。<br><br>
-            一緒に、あなたの理想のテニスを実現しましょう。
-        </p>
+    <section id="concept" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">レッスン方針</h2>
+            <div
+                style="display: flex; gap: 40px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                <div class="concept-content-box" style="flex: 1; min-width: 300px;">
+                    <p class="concept-text"
+                        style="text-align: left; margin: 0; margin-bottom: 24px; font-size: 1.05rem; line-height: 1.8;">
+                        「長年続けているのに上達の壁を感じる」<br>
+                        「直したい癖がなかなか抜けない...」
+                    </p>
+                    <p class="concept-text"
+                        style="text-align: left; margin: 0; margin-bottom: 24px; font-size: 1.05rem; line-height: 1.8;">
+                        そんな悩みを最短で解決できるのが、<strong>完全マンツーマンのプライベートレッスン</strong>です。
+                    </p>
+                    <p class="concept-text"
+                        style="text-align: left; margin: 0; margin-bottom: 24px; font-size: 1.05rem; line-height: 1.8;">
+                        一人ひとりの悩みに合わせたレッスンを提供することで、<br>
+                        <strong>新たな発見</strong>や<strong>課題解決</strong>につながり、効率的なレベルアップを目指せます。
+                    </p>
+                    <p class="concept-text" style="text-align: left; margin: 0; font-size: 1.05rem; line-height: 1.8;">
+                        論理的で分かりやすいアドバイスと、目標に寄り添う丁寧な指導で、一緒に<strong>あなたの理想のテニス</strong>を実現しましょう。
+                    </p>
+                </div>
+                <!-- YouTubeへのリンク枠（埋め込みエラー対策） -->
+                <div class="concept-content-box"
+                    style="flex: 1; min-width: 300px; max-width: 500px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                    <a href="https://youtu.be/6iImC9NjlOE" target="_blank" rel="noopener noreferrer"
+                        style="display: block; position: relative;">
+                        <!-- YouTubeの自動生成サムネイル画像 -->
+                        <img src="https://img.youtube.com/vi/6iImC9NjlOE/maxresdefault.jpg" alt="レッスン動画を見る"
+                            style="width: 100%; height: auto; display: block;">
+                        <!-- 中央の再生ボタンアイコン -->
+                        <div
+                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.7); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                            <div
+                                style="border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 20px solid white; margin-left: 5px;">
+                            </div>
+                        </div>
+                    </a>
+                    <div
+                        style="background-color: var(--white); padding: 15px; text-align: center; font-size: 0.9rem; font-weight: bold; color: var(--primary-navy);">
+                        ▶ クリックするとYouTubeで動画が再生されます
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="about" class="bg-light">
+    <section id="about">
         <div class="container about-grid">
             <div class="about-image">
-                <!-- ダミー画像 -->
-                <img src="https://images.unsplash.com/photo-1554068865-c7211abfa7c2?q=80&w=800&auto=format&fit=crop"
-                    alt="Coach Munetoshi Kumagae">
+                <!-- プロフィール画像 -->
+                <img src="images/profile.jpg" alt="Coach Munetoshi Kumagae">
             </div>
             <div class="about-content">
-                <h2 class="section-title" style="text-align: left;">About Me</h2>
-                <h3>熊谷 宗敏</h3>
-                <h4>Tennis Coach / JPTA認定 プロフェッショナル育成コーチ</h4>
-                <p>学生時代からテニスに打ち込み、全国大会に出場。卒業後は5年間、都内有名テニススクールで専属コーチとして活動し、のべ2,000人以上の生徒を指導してきました。</p>
-                <p>論理的で分かりやすいアドバイスと、とにかく明るいレッスンが持ち味です。「なぜそのミスが起きるのか？」を紐解き、最短距離での上達をサポートします。</p>
-                <ul class="about-list">
-                    <li>202X年 〇〇市 市民大会 シングルス 優勝</li>
-                    <li>JPTA（日本プロテニス協会）認定コーチ</li>
-                    <li>趣味：コーヒー巡り、キャンプ</li>
-                </ul>
+                <h2 class="section-title" style="text-align: left;">プロフィール</h2>
+                <h3 style="display: flex; align-items: baseline; gap: 15px;">熊谷 宗敏 <span
+                        style="font-size: 1rem; color: var(--text-light); font-weight: normal;">(くまがえ むねとし)</span></h3>
+                <p>14歳以下日本代表に錦織圭と共に選抜され世界大会で2位を記録。<br>
+                    高校はオーストラリアのメルボルンに留学後、全豪オープンジュニアに出場。</p>
+
+                <p>その後は関西の大学に進学し、関西学生で1位、日本学生ランキングは最高5位を記録する。<br>
+                    社会人としては、（株）リコーに実業団選手として入社し、全日本選手権に単複出場。日本リーグでは最優秀新人賞を受賞する。</p>
+
+                <p>現役を引退後はテニスコーチとして、一般の方からジュニア選手まで、幅広い世代の方々にレッスンを行う。<br>
+                    技術等の指導に加えて、メンタル面からのアプローチを取り入れ、選手のパフォーマンス向上に繋げる。</p>
+
+                <!-- 実績写真ギャラリー -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 30px;">
+                    <div>
+                        <img src="images/achievement1_world.jpg" alt="14歳以下 世界2位の写真"
+                            style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <p
+                            style="text-align: center; font-size: 0.8rem; margin-top: 8px; font-weight: bold; color: var(--primary-navy);">
+                            14歳以下 世界2位</p>
+                    </div>
+                    <div>
+                        <img src="images/achievement2_australian.jpg" alt="全豪ジュニアの写真"
+                            style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <p
+                            style="text-align: center; font-size: 0.8rem; margin-top: 8px; font-weight: bold; color: var(--primary-navy);">
+                            全豪ジュニア出場</p>
+                    </div>
+                    <div>
+                        <img src="images/achievement3_student.jpg" alt="学生ランキング5位の写真"
+                            style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <p
+                            style="text-align: center; font-size: 0.8rem; margin-top: 8px; font-weight: bold; color: var(--primary-navy);">
+                            学生ランキング5位</p>
+                    </div>
+                    <div>
+                        <img src="images/achievement4_ricoh.jpg" alt="日本リーグ新人賞の写真"
+                            style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <p
+                            style="text-align: center; font-size: 0.8rem; margin-top: 8px; font-weight: bold; color: var(--primary-navy);">
+                            日本リーグ新人賞</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="lesson" class="container">
-        <h2 class="section-title">Lesson & Price</h2>
-        <div class="lesson-grid">
+    <section id="lesson" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">レッスン内容・料金</h2>
+            <div class="lesson-grid">
 
-            <div class="lesson-card">
-                <h3>プライベートレッスン</h3>
-                <div class="lesson-target">対象：1対1で集中したい方</div>
-                <p class="lesson-desc">周りを気にせず、自分の課題に集中して取り組みたい方向け。フォーム解析、球出し練習、ラリー、試合形式など完全オーダーメイドで行います。</p>
-                <div class="lesson-price">¥10,000</div>
-                <div class="lesson-time">/ 60分 (コート代別)</div>
+                <div class="lesson-card">
+                    <h3>プライベートレッスン</h3>
+                    <div class="lesson-target">対象：1対1で集中したい方</div>
+                    <p class="lesson-desc">周りを気にせず、自分の課題に集中して取り組みたい方向け。フォーム解析、球出し練習、ラリー、試合形式など完全オーダーメイドで行います。</p>
+                    <div class="lesson-price">¥10,000</div>
+                    <div class="lesson-time">/ 60分 (コート代別)</div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>ジュニアレッスン</h3>
+                    <div class="lesson-target">対象：小学生〜高校生</div>
+                    <p class="lesson-desc">テニスの楽しさを伝えながら、将来につながる基礎体力と正しいフォームを身につけます。年齢やレベルに合わせて指導します。</p>
+                    <div class="lesson-price">¥10,000</div>
+                    <div class="lesson-time">/ お一人様 90分 (コート代別)</div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>出張・ヒッティング</h3>
+                    <div class="lesson-target">対象：サークル・部活動・試合相手</div>
+                    <p class="lesson-desc">指定のコートまでお伺いし、指導体制の構築や、質の高いヒッティングパートナーを務めます。練習メニューの考案もお任せください。</p>
+                    <div class="lesson-price">¥10,000</div>
+                    <div class="lesson-time">/ 120分〜 (交通費・コート代別)</div>
+                </div>
+
             </div>
-
-            <div class="lesson-card">
-                <h3>ジュニアレッスン</h3>
-                <div class="lesson-target">対象：小学生〜高校生</div>
-                <p class="lesson-desc">テニスの楽しさを伝えながら、将来につながる基礎体力と正しいフォームを身につけます。年齢やレベルに合わせて指導します。</p>
-                <div class="lesson-price">¥10,000</div>
-                <div class="lesson-time">/ お一人様 90分 (コート代別)</div>
-            </div>
-
-            <div class="lesson-card">
-                <h3>出張・ヒッティング</h3>
-                <div class="lesson-target">対象：サークル・部活動・試合相手</div>
-                <p class="lesson-desc">指定のコートまでお伺いし、指導体制の構築や、質の高いヒッティングパートナーを務めます。練習メニューの考案もお任せください。</p>
-                <div class="lesson-price">¥10,000</div>
-                <div class="lesson-time">/ 120分〜 (交通費・コート代別)</div>
-            </div>
-
-        </div>
     </section>
 
     <section id="contact" class="bg-light">
         <div class="contact-container">
-            <h2 class="section-title">Contact</h2>
+            <h2 class="section-title">お問い合わせ</h2>
             <p class="contact-desc">
                 体験レッスンのご予約や、レッスンに関するご相談はお気軽に公式LINEよりお問い合わせください。<br>
                 些細な疑問でも大歓迎です！
