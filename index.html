@@ -213,7 +213,9 @@
 
         .about-image img {
             width: 100%;
-            height: auto;
+            aspect-ratio: 1 / 1; /* 正方形にカット */
+            object-fit: cover; /* 枠にフィットさせる */
+            object-position: center 20%; /* 頭上の余白を少しカットしバランスを調整 */
             display: block;
         }
 
@@ -253,6 +255,21 @@
             left: 0;
             color: var(--accent-blue);
             font-weight: bold;
+        }
+
+        /* Accordion (Voice Section) */
+        details > summary {
+            list-style: none; /* デフォルトの矢印を非表示 */
+        }
+        details > summary::-webkit-details-marker {
+            display: none; /* Safari用のデフォルト矢印非表示 */
+        }
+        details .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        details[open] .arrow {
+            transform: rotate(180deg);
         }
 
         /* Lesson & Price */
@@ -348,13 +365,17 @@
                 margin-bottom: 30px;
             }
 
+            .hero {
+                background-position: 35% center !important;
+            }
+
             .hero h1 {
-                font-size: 2rem;
-                line-height: 1.3;
+                font-size: clamp(1.4rem, 6.5vw, 2rem);
+                line-height: 1.4;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: clamp(0.9rem, 4vw, 1.2rem);
                 margin-bottom: 20px;
             }
 
@@ -384,8 +405,55 @@
             }
 
             .nav-links {
-                display: none;
-                /* スマホ用メニューは省略（ハンバーガーメニュー等が必要な場合は別途追加） */
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background-color: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                gap: 40px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 21px;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .hamburger span {
+                display: block;
+                width: 100%;
+                height: 3px;
+                background-color: var(--primary-navy);
+                border-radius: 3px;
+                transition: all 0.3s ease;
+            }
+
+            /* ハンバーガーアイコンが×になるアニメーション */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
             }
 
             /* YouTubeや各コンテンツ枠をスマホ幅にフィットさせる */
@@ -410,13 +478,19 @@
                 <li><a href="#faq">よくある質問</a></li>
                 <li><a href="#contact">お問い合わせ</a></li>
             </ul>
+            <!-- ハンバーガーメニューボタン（スマホ用） -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
     <section class="hero" id="home">
         <div class="hero-content container">
-            <h1>あなたのテニスを、<br>もっと楽しく、もっと上へ。</h1>
-            <p>初心者からトーナメント出場者まで、完全オーダーメイドのレッスン</p>
+            <h1><span style="white-space: nowrap;">あなたのテニスを</span><br><span style="white-space: nowrap;">もっと楽しく、もっと上へ。</span></h1>
+            <p><span style="white-space: nowrap;">初心者からトーナメント出場者まで、</span><br><span style="white-space: nowrap;">完全オーダーメイドのレッスン</span></p>
         </div>
     </section>
 
@@ -428,20 +502,22 @@
                 <div class="concept-content-box" style="flex: 1; min-width: 300px;">
                     <p class="concept-text"
                         style="text-align: left; margin: 0; margin-bottom: 24px; font-size: 1.05rem; line-height: 1.8;">
-                        「長年続けているのに上達の壁を感じる」<br>
-                        「直したい癖がなかなか抜けない...」
+                        <span style="display: inline-block;">「長年続けているのに</span><span style="display: inline-block;">上達の壁を感じる」</span><br>
+                        <span style="display: inline-block;">「直したい癖が</span><span style="display: inline-block;">なかなか抜けない...」</span>
                     </p>
                     <p class="concept-text"
                         style="text-align: left; margin: 0; margin-bottom: 24px; font-size: 1.05rem; line-height: 1.8;">
-                        そんな悩みを最短で解決できるのが、<strong>完全マンツーマンのプライベートレッスン</strong>です。
+                        <span style="display: inline-block;">そんな悩みを</span><span style="display: inline-block;">最短で解決できるのが、</span><br>
+                        <span style="display: inline-block;"><strong>完全マンツーマンの</strong></span><span style="display: inline-block;"><strong>プライベートレッスン</strong>です。</span>
                     </p>
                     <p class="concept-text"
                         style="text-align: left; margin: 0; margin-bottom: 24px; font-size: 1.05rem; line-height: 1.8;">
-                        一人ひとりの悩みに合わせたレッスンを提供することで、<br>
-                        <strong>新たな発見</strong>や<strong>課題解決</strong>につながり、効率的なレベルアップを目指せます。
+                        <span style="display: inline-block;">一人ひとりの悩みに</span><span style="display: inline-block;">合わせたレッスンを</span><span style="display: inline-block;">提供し、</span><br>
+                        <span style="display: inline-block;"><strong>新たな発見</strong>や</span><span style="display: inline-block;"><strong>課題解決</strong>につながり、</span><br>
+                        <span style="display: inline-block;">効率的な</span><span style="display: inline-block;">レベルアップを</span><span style="display: inline-block;">目指せます。</span>
                     </p>
                     <p class="concept-text" style="text-align: left; margin: 0; font-size: 1.05rem; line-height: 1.8;">
-                        論理的で分かりやすいアドバイスと、目標に寄り添う丁寧な指導で、一緒に<strong>あなたの理想のテニス</strong>を実現しましょう。
+                        <span style="display: inline-block;">論理的で</span><span style="display: inline-block;">分かりやすいアドバイスと、</span><span style="display: inline-block;">目標に寄り添う</span><span style="display: inline-block;">丁寧な指導で、</span><span style="display: inline-block;">一緒に<strong>あなたの理想のテニス</strong>を</span><span style="display: inline-block;">実現しましょう。</span>
                     </p>
                 </div>
                 <!-- YouTubeへのリンク枠（埋め込みエラー対策） -->
@@ -490,14 +566,16 @@
                     <div style="color: var(--accent-blue); font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; letter-spacing: 1px;">
                         Babolat アンバサダー
                     </div>
-                <p>14歳以下日本代表に錦織圭と共に選抜され世界大会で2位を記録。<br>
-                    高校はオーストラリアのメルボルンに留学後、全豪オープンジュニアに出場。</p>
+                <p><span style="display: inline-block;">14歳以下日本代表に</span><span style="display: inline-block;">錦織圭と共に選抜され</span><span style="display: inline-block;">世界大会で2位を記録。</span><br>
+                    <span style="display: inline-block;">高校は</span><span style="display: inline-block;">オーストラリアのメルボルンに留学後、</span><span style="display: inline-block;">全豪オープンジュニアに出場。</span></p>
 
-                <p>その後は関西の大学に進学し、関西学生で1位、日本学生ランキングは最高5位を記録する。<br>
-                    社会人としては、（株）リコーに実業団選手として入社し、全日本選手権に単複出場。日本リーグでは最優秀新人賞を受賞する。</p>
+                <p><span style="display: inline-block;">その後は</span><span style="display: inline-block;">関西の大学に進学し、</span><span style="display: inline-block;">関西学生で1位、</span><span style="display: inline-block;">日本学生ランキングは</span><span style="display: inline-block;">最高5位を記録する。</span></p>
 
-                <p>現役を引退後はテニスコーチとして、一般の方からジュニア選手まで、幅広い世代の方々にレッスンを行う。<br>
-                    技術等の指導に加えて、メンタル面からのアプローチを取り入れ、選手のパフォーマンス向上に繋げる。</p>
+                <p><span style="display: inline-block;">（株）リコーに実業団選手として入社し、</span><br>
+                    <span style="display: inline-block;">全日本選手権に単複出場。</span><span style="display: inline-block;">日本リーグでは</span><span style="display: inline-block;">最優秀新人賞を受賞する。</span></p>
+
+                <p><span style="display: inline-block;">現役を引退後は</span><span style="display: inline-block;">テニスコーチとして、</span><span style="display: inline-block;">一般の方からジュニア選手まで、</span><span style="display: inline-block;">幅広い世代の方々に</span><span style="display: inline-block;">レッスンを行う。</span><br>
+                    <span style="display: inline-block;">技術等の指導に加えて、</span><span style="display: inline-block;">メンタル面からのアプローチを取り入れ、</span><span style="display: inline-block;">選手のパフォーマンス向上に繋げる。</span></p>
 
                 <!-- 実績写真ギャラリー -->
                 <div
@@ -524,7 +602,7 @@
                             学生ランキング5位</p>
                     </div>
                     <div>
-                        <img src="images/achievement4_ricoh.jpg" alt="日本リーグ新人賞の写真"
+                        <img src="images/achievement4_ricoh_new.png" alt="日本リーグ新人賞の写真"
                             style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                         <p
                             style="text-align: center; font-size: 0.8rem; margin-top: 8px; font-weight: bold; color: var(--primary-navy);">
@@ -544,7 +622,7 @@
                 style="background: var(--white); border-radius: 10px; padding: 40px 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); max-width: 800px; margin: 0 auto;">
 
                 <h3
-                    style="text-align: center; font-size: 1.6rem; color: var(--primary-navy); margin-bottom: 30px; border-bottom: 2px solid var(--accent-blue); padding-bottom: 15px; display: inline-block; position: relative; left: 50%; transform: translateX(-50%);">
+                    style="text-align: center; font-size: clamp(1.2rem, 5.5vw, 1.6rem); white-space: nowrap; color: var(--primary-navy); margin-bottom: 30px; border-bottom: 2px solid var(--accent-blue); padding-bottom: 15px; display: inline-block; position: relative; left: 50%; transform: translateX(-50%);">
                     プライベートレッスン料金
                 </h3>
 
@@ -577,22 +655,27 @@
                 <div
                     style="background-color: #f8f9fa; border-left: 5px solid var(--accent-green); padding: 20px; border-radius: 4px;">
                     <h4 style="margin-bottom: 15px; color: var(--primary-navy); font-size: 1.1rem;">【ご確認ください】</h4>
-                    <ul style="list-style: none; padding-left: 0; margin-bottom: 0;">
-                        <li style="margin-bottom: 10px; padding-left: 20px; text-indent: -20px;">※
-                            <strong>交通費、ボール代込み</strong>の金額です。
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 0; display: flex; flex-direction: column; gap: 12px; line-height: 1.6; font-size: 0.95rem;">
+                        <li style="display: flex; align-items: flex-start; gap: 6px;">
+                            <span style="flex-shrink: 0;">※</span>
+                            <span><strong>交通費、ボール代込み</strong>の金額です。</span>
                         </li>
-                        <li style="margin-bottom: 10px; padding-left: 20px; text-indent: -20px;">※
-                            <strong>人数制限はありません</strong>。ご友人同士でのグループレッスンも同料金でお受けします。
+                        <li style="display: flex; align-items: flex-start; gap: 6px;">
+                            <span style="flex-shrink: 0;">※</span>
+                            <span><strong>人数制限はありません</strong>。ご友人同士でのグループレッスンも同料金でお受けします。</span>
                         </li>
-                        <li style="margin-bottom: 0; padding-left: 20px; text-indent: -20px;">※
-                            コートはお客様がご指定の場所（神奈川〜東京近辺）へ伺います。<br>　 コートのご予約・お支払いはお客様ご自身でお願いいたします。</li>
-                        <li style="margin-top: 10px; margin-bottom: 0; padding-left: 20px; text-indent: -20px;">※
-                            <strong>一部地域によっては価格が変動いたします。</strong>
+                        <li style="display: flex; align-items: flex-start; gap: 6px;">
+                            <span style="flex-shrink: 0;">※</span>
+                            <span>コートはお客様がご指定の場所（神奈川〜東京近辺）へ伺います。<br>コートのご予約・お支払いはお客様ご自身でお願いいたします。</span>
                         </li>
-                        <li
-                            style="margin-top: 10px; margin-bottom: 0; padding-left: 20px; text-indent: -20px; color: var(--primary-navy); font-weight: bold;">
-                            ※
-                            イベントレッスン・合宿等での1日の拘束なども可能です。別途ご相談ください。</li>
+                        <li style="display: flex; align-items: flex-start; gap: 6px;">
+                            <span style="flex-shrink: 0;">※</span>
+                            <span><strong>一部地域によっては価格が変動いたします。</strong></span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 6px; color: var(--primary-navy); font-weight: bold;">
+                            <span style="flex-shrink: 0;">※</span>
+                            <span>イベントレッスン・合宿等での1日の拘束なども可能です。別途ご相談ください。</span>
+                        </li>
                     </ul>
                 </div>
 
@@ -607,64 +690,80 @@
             <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
 
                     <!-- 声 1: 70代男性 -->
-                    <div
-                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
-                        <div
-                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span
-                                style="background-color: var(--accent-blue); padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">70代
-                                男性</span>
-                            <span style="font-size: 1.1rem;">もっと早くコーチから教わりたかった</span>
+                    <details
+                        style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                        <summary
+                            style="padding: 25px 30px; font-weight: bold; color: var(--primary-navy); display: flex; align-items: center; justify-content: space-between; list-style: none; user-select: none;">
+                            <div style="display: flex; align-items: center; gap: 8px; flex: 1; overflow: hidden;">
+                                <span
+                                    style="background-color: var(--accent-blue); padding: 4px 8px; border-radius: 4px; color: var(--white); font-size: 0.75rem; flex-shrink: 0; line-height: 1.2; text-align: center; width: 45px;">70代<br>男性</span>
+                                <span style="font-size: clamp(0.85rem, 3.5vw, 1rem); white-space: normal; line-height: 1.4; flex: 1;">もっと早くコーチから教わりたかった</span>
+                            </div>
+                            <span class="arrow" style="color: var(--accent-blue); font-size: 1.2rem; flex-shrink: 0; margin-left:10px;">▼</span>
+                        </summary>
+                        <div style="padding: 0 30px 30px 30px; border-top: 1px dashed #eee; padding-top: 20px;">
+                            <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                                「長年自己流でテニスを楽しんできましたが、体力的な衰えもあって伸び悩んでいました。熊谷コーチに体の使い方から論理的に見直してもらったところ、少ない力でも驚くほどボールが飛ぶように。年齢を重ねてからでもテニスは進化できるのだと実感しました。もっと早く出会って教わりたかったです。」
+                            </p>
                         </div>
-                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                            「長年自己流でテニスを楽しんできましたが、体力的な衰えもあって伸び悩んでいました。熊谷コーチに体の使い方から論理的に見直してもらったところ、少ない力でも驚くほどボールが飛ぶように。年齢を重ねてからでもテニスは進化できるのだと実感しました。もっと早く出会って教わりたかったです。」
-                        </p>
-                    </div>
+                    </details>
 
                     <!-- 声 2: 60代男性 -->
-                    <div
-                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
-                        <div
-                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span
-                                style="background-color: var(--accent-blue); padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">60代
-                                男性</span>
-                            <span style="font-size: 1.1rem;">これまでに無い新感覚を得られて、目から鱗が落ちた</span>
+                    <details
+                        style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                        <summary
+                            style="padding: 25px 30px; font-weight: bold; color: var(--primary-navy); display: flex; align-items: center; justify-content: space-between; list-style: none; user-select: none;">
+                            <div style="display: flex; align-items: center; gap: 8px; flex: 1; overflow: hidden;">
+                                <span
+                                    style="background-color: var(--accent-blue); padding: 4px 8px; border-radius: 4px; color: var(--white); font-size: 0.75rem; flex-shrink: 0; line-height: 1.2; text-align: center; width: 45px;">60代<br>男性</span>
+                                <span style="font-size: clamp(0.85rem, 3.5vw, 1rem); white-space: normal; line-height: 1.4; flex: 1;">これまでに無い新感覚を得られて、目から鱗が落ちた</span>
+                            </div>
+                            <span class="arrow" style="color: var(--accent-blue); font-size: 1.2rem; flex-shrink: 0; margin-left:10px;">▼</span>
+                        </summary>
+                        <div style="padding: 0 30px 30px 30px; border-top: 1px dashed #eee; padding-top: 20px;">
+                            <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                                「今まで色々なコーチのレッスンを受けてきましたが、トップで活躍されていた熊谷コーチのアドバイスは視点が全く違いました。自分の中にあった固定観念が覆り、まさに目から鱗が落ちるような新感覚の連続です。毎回のレッスンで新しい発見があり、コートに立つのが待ち遠しいです。」
+                            </p>
                         </div>
-                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                            「今まで色々なコーチのレッスンを受けてきましたが、トップで活躍されていた熊谷コーチのアドバイスは視点が全く違いました。自分の中にあった固定観念が覆り、まさに目から鱗が落ちるような新感覚の連続です。毎回のレッスンで新しい発見があり、コートに立つのが待ち遠しいです。」
-                        </p>
-                    </div>
+                    </details>
 
                     <!-- 声 3: 50代女性 -->
-                    <div
-                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
-                        <div
-                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span
-                                style="background-color: var(--accent-green); padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">50代
-                                女性</span>
-                            <span style="font-size: 1.1rem;">技術とメンタルの両輪で指導。試合が楽しくなりました</span>
+                    <details
+                        style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                        <summary
+                            style="padding: 25px 30px; font-weight: bold; color: var(--primary-navy); display: flex; align-items: center; justify-content: space-between; list-style: none; user-select: none;">
+                            <div style="display: flex; align-items: center; gap: 8px; flex: 1; overflow: hidden;">
+                                <span
+                                    style="background-color: var(--accent-green); padding: 4px 8px; border-radius: 4px; color: var(--white); font-size: 0.75rem; flex-shrink: 0; line-height: 1.2; text-align: center; width: 45px;">50代<br>女性</span>
+                                <span style="font-size: clamp(0.85rem, 3.5vw, 1rem); white-space: normal; line-height: 1.4; flex: 1;">技術とメンタルの両輪で指導。試合が楽しくなりました</span>
+                            </div>
+                            <span class="arrow" style="color: var(--accent-green); font-size: 1.2rem; flex-shrink: 0; margin-left:10px;">▼</span>
+                        </summary>
+                        <div style="padding: 0 30px 30px 30px; border-top: 1px dashed #eee; padding-top: 20px;">
+                            <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                                「試合になるとどうしても緊張して本来のプレーができずにいました。技術面の的確なアドバイスはもちろんですが、試合に向けたメンタルの作り方や課題に対するアプローチ方法まで深く教えていただけたことで、今では試合に出るのがとても楽しいです。頼りになるコーチです。」
+                            </p>
                         </div>
-                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                            「試合になるとどうしても緊張して本来のプレーができずにいました。技術面の的確なアドバイスはもちろんですが、試合に向けたメンタルの作り方や課題に対するアプローチ方法まで深く教えていただけたことで、今では試合に出るのがとても楽しいです。頼りになるコーチです。」
-                        </p>
-                    </div>
+                    </details>
 
                     <!-- 声 4: 10代男性 -->
-                    <div
-                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
-                        <div
-                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <span
-                                style="background-color: #f39c12; padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">10代
-                                男性</span>
-                            <span style="font-size: 1.1rem;">実際の試合で活かせる内容で、勝率が上がった！</span>
+                    <details
+                        style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                        <summary
+                            style="padding: 25px 30px; font-weight: bold; color: var(--primary-navy); display: flex; align-items: center; justify-content: space-between; list-style: none; user-select: none;">
+                            <div style="display: flex; align-items: center; gap: 8px; flex: 1; overflow: hidden;">
+                                <span
+                                    style="background-color: #f39c12; padding: 4px 8px; border-radius: 4px; color: var(--white); font-size: 0.75rem; flex-shrink: 0; line-height: 1.2; text-align: center; width: 45px;">10代<br>男性</span>
+                                <span style="font-size: clamp(0.85rem, 3.5vw, 1rem); white-space: normal; line-height: 1.4; flex: 1;">実際の試合で活かせる内容で、勝率が上がった！</span>
+                            </div>
+                            <span class="arrow" style="color: #f39c12; font-size: 1.2rem; flex-shrink: 0; margin-left:10px;">▼</span>
+                        </summary>
+                        <div style="padding: 0 30px 30px 30px; border-top: 1px dashed #eee; padding-top: 20px;">
+                            <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                                「ただ綺麗なフォームで打つ練習ではなく、『どうすればポイントが取れるか』という実践的な展開や戦術を教わることができます。元日本代表の世界レベルの球を受けられるのも凄く刺激になりますし、アドバイス通りの配球を意識しただけで、実際の大会での勝率が目に見えて上がりました！」
+                            </p>
                         </div>
-                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                            「ただ綺麗なフォームで打つ練習ではなく、『どうすればポイントが取れるか』という実践的な展開や戦術を教わることができます。元日本代表の世界レベルの球を受けられるのも凄く刺激になりますし、アドバイス通りの配球を意識しただけで、実際の大会での勝率が目に見えて上がりました！」
-                        </p>
-                    </div>
+                    </details>
 
             </div>
         </div>
@@ -676,74 +775,94 @@
             <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
                 
                 <!-- Q1 -->
-                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
-                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
-                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">全くの初心者でも大丈夫ですか？</h3>
-                    </div>
-                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
-                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                <!-- Q1 -->
+                <details style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                    <summary style="display: flex; gap: 15px; align-items: flex-start; justify-content: space-between; padding: 25px; list-style: none; user-select: none;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">Q.</span>
+                            <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">全くの初心者でも大丈夫ですか？</h3>
+                        </div>
+                        <span class="arrow" style="color: var(--accent-blue); font-size: 1.2rem; flex-shrink: 0; margin-left: 10px; line-height: 1.4;">▼</span>
+                    </summary>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding: 20px 25px 25px 25px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">A.</span>
                         <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
                             もちろん大丈夫です！ラケットの握り方のような基礎から、丁寧に分かりやすく指導いたします。初心者の方こそ、最初から正しいフォームを身につけることで、その後の上達が格段に早くなります。
                         </p>
                     </div>
-                </div>
+                </details>
 
                 <!-- Q2 -->
-                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
-                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
-                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">コートの予約はお願いできますか？</h3>
-                    </div>
-                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
-                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                <!-- Q2 -->
+                <details style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                    <summary style="display: flex; gap: 15px; align-items: flex-start; justify-content: space-between; padding: 25px; list-style: none; user-select: none;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">Q.</span>
+                            <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">コートの予約はお願いできますか？</h3>
+                        </div>
+                        <span class="arrow" style="color: var(--accent-blue); font-size: 1.2rem; flex-shrink: 0; margin-left: 10px; line-height: 1.4;">▼</span>
+                    </summary>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding: 20px 25px 25px 25px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">A.</span>
                         <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
                             基本的にはお客様ご自身での手配をお願いしております。ご指定いただいた指定のコート（神奈川〜東京近辺）へお伺いいたします。もしコート予約の仕方が分からない場合は、お気軽にご相談ください。
                         </p>
                     </div>
-                </div>
+                </details>
 
                 <!-- Q3 -->
-                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
-                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
-                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">友人や家族と一緒に受けることは可能ですか？</h3>
-                    </div>
-                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
-                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                <!-- Q3 -->
+                <details style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                    <summary style="display: flex; gap: 15px; align-items: flex-start; justify-content: space-between; padding: 25px; list-style: none; user-select: none;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">Q.</span>
+                            <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">友人や家族と一緒に受けることは可能ですか？</h3>
+                        </div>
+                        <span class="arrow" style="color: var(--accent-blue); font-size: 1.2rem; flex-shrink: 0; margin-left: 10px; line-height: 1.4;">▼</span>
+                    </summary>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding: 20px 25px 25px 25px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">A.</span>
                         <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
                             はい、可能です。人数制限は設けておらず、追加料金もいただいておりません（時間あたりの料金のみとなります）。ご家族やご友人とのグループレッスン・ペアレッスンも大歓迎です。
                         </p>
                     </div>
-                </div>
+                </details>
 
                 <!-- Q4 -->
-                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
-                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
-                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">雨で中止になった場合、料金はどうなりますか？</h3>
-                    </div>
-                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
-                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                <!-- Q4 -->
+                <details style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                    <summary style="display: flex; gap: 15px; align-items: flex-start; justify-content: space-between; padding: 25px; list-style: none; user-select: none;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">Q.</span>
+                            <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">雨で中止になった場合、料金はどうなりますか？</h3>
+                        </div>
+                        <span class="arrow" style="color: var(--accent-blue); font-size: 1.2rem; flex-shrink: 0; margin-left: 10px; line-height: 1.4;">▼</span>
+                    </summary>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding: 20px 25px 25px 25px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">A.</span>
                         <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
                             悪天候によってレッスンが実施できなかった場合、レッスン料金は一切かかりませんのでご安心ください。（ただし、コートのキャンセル料等が発生する場合はお客様のご負担となりますこと、ご了承ください）
                         </p>
                     </div>
-                </div>
+                </details>
 
                 <!-- Q5 -->
-                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
-                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
-                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">年齢制限はありますか？（子供でも受けられますか？）</h3>
-                    </div>
-                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
-                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                <!-- Q5 -->
+                <details style="background: var(--white); border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer;">
+                    <summary style="display: flex; gap: 15px; align-items: flex-start; justify-content: space-between; padding: 25px; list-style: none; user-select: none;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start; padding-right: 10px;">
+                            <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">Q.</span>
+                            <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">年齢制限はありますか？（子供でも受けられますか？）</h3>
+                        </div>
+                        <span class="arrow" style="color: var(--accent-blue); font-size: 1.2rem; flex-shrink: 0; margin-left: 10px; line-height: 1.4;">▼</span>
+                    </summary>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding: 20px 25px 25px 25px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1; flex-shrink: 0;">A.</span>
                         <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
                             年齢制限はありません。ジュニア選手からシニアの方まで幅広い年代の方にご受講いただいています。お子様へのレッスンも大歓迎です！
                         </p>
                     </div>
-                </div>
+                </details>
 
             </div>
         </div>
@@ -753,7 +872,7 @@
         <div class="contact-container">
             <h2 class="section-title">お問い合わせ</h2>
             <p class="contact-desc">
-                レッスンに関するご予約やご相談は、お気軽にメールにてお問い合わせください。<br>
+                レッスンに関するご予約やご相談は、<br>お気軽にメールにてお問い合わせください。<br>
                 些細な疑問でも大歓迎です！
             </p>
             <a href="mailto:kumagae.tennis@gmail.com" class="btn">メールでお問い合わせ</a>
@@ -767,6 +886,29 @@
         <p>&copy; 2026 Munetoshi Kumagae Tennis Coach. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        // ハンバーガーメニューの開閉機能
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                // メニュー内のリンクをタップしたらメニューを閉じる
+                navItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
