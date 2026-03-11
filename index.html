@@ -24,6 +24,12 @@
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+            /* 固定ヘッダーの高さ(70px)分、アンカーリンクで飛んだ時の位置を下げる */
+            scroll-padding-top: 70px;
+        }
+
         body {
             color: var(--text-dark);
             line-height: 1.6;
@@ -913,6 +919,24 @@
                     });
                 });
             }
+        });
+
+        // ページ読み込み時に強制的にトップへ戻す（SNSリンク等に #concept などが入っていた場合の対策）
+        // 履歴からもハッシュを消去して、リロード時にも中段から始まらないようにする
+        if (window.location.hash) {
+            window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10);
+        });
+        // 念のためload時にも実行
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 50);
         });
     </script>
 </body>
