@@ -406,6 +406,8 @@
                 <li><a href="#concept">レッスン方針</a></li>
                 <li><a href="#about">プロフィール</a></li>
                 <li><a href="#lesson">レッスン料金</a></li>
+                <li><a href="#voice">お客様の声</a></li>
+                <li><a href="#faq">よくある質問</a></li>
                 <li><a href="#contact">お問い合わせ</a></li>
             </ul>
         </nav>
@@ -459,24 +461,35 @@
                         </div>
                     </a>
                     <div
-                        style="background-color: var(--white); padding: 15px; text-align: center; font-size: 0.9rem; font-weight: bold; color: var(--primary-navy);">
+                        style="background-color: var(--white); padding: 15px; text-align: center; font-size: 0.9rem; font-weight: bold; color: var(--primary-navy); border-bottom: 1px solid #eee;">
                         ▶ クリックするとYouTubeで動画が再生されます
                     </div>
+                    <!-- YouTubeチャンネルへのリンク -->
+                    <a href="https://www.youtube.com/@kumagae.tennis" target="_blank" rel="noopener noreferrer"
+                        style="display: block; background-color: #ff0000; color: white; padding: 15px; text-align: center; text-decoration: none; font-weight: bold; font-size: 1.05rem; transition: background-color 0.3s;"
+                        onmouseover="this.style.backgroundColor='#cc0000'"
+                        onmouseout="this.style.backgroundColor='#ff0000'">
+                        🎥 YouTubeチャンネルはこちら！
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="about">
-        <div class="container about-grid">
-            <div class="about-image">
-                <!-- プロフィール画像 -->
-                <img src="images/profile.jpg" alt="Coach Munetoshi Kumagae">
-            </div>
-            <div class="about-content">
-                <h2 class="section-title" style="text-align: left;">プロフィール</h2>
-                <h3 style="display: flex; align-items: baseline; gap: 15px;">熊谷 宗敏 <span
+        <div class="container">
+            <h2 class="section-title">プロフィール</h2>
+            <div class="about-grid">
+                <div class="about-image">
+                    <!-- プロフィール画像 -->
+                    <img src="images/profile.jpg" alt="Coach Munetoshi Kumagae">
+                </div>
+                <div class="about-content">
+                    <h3 style="display: flex; align-items: baseline; gap: 15px; margin-bottom: 5px;">熊谷 宗敏 <span
                         style="font-size: 1rem; color: var(--text-light); font-weight: normal;">(くまがえ むねとし)</span></h3>
+                    <div style="color: var(--accent-blue); font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; letter-spacing: 1px;">
+                        Babolat アンバサダー
+                    </div>
                 <p>14歳以下日本代表に錦織圭と共に選抜され世界大会で2位を記録。<br>
                     高校はオーストラリアのメルボルンに留学後、全豪オープンジュニアに出場。</p>
 
@@ -504,7 +517,7 @@
                             全豪ジュニア出場</p>
                     </div>
                     <div>
-                        <img src="images/achievement3_student.jpg" alt="学生ランキング5位の写真"
+                        <img src="images/achievement3_student2.jpg" alt="学生ランキング5位の写真"
                             style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                         <p
                             style="text-align: center; font-size: 0.8rem; margin-top: 8px; font-weight: bold; color: var(--primary-navy);">
@@ -520,51 +533,232 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     <section id="lesson" class="bg-light">
         <div class="container">
             <h2 class="section-title">レッスン内容・料金</h2>
-            <div class="lesson-grid">
 
-                <div class="lesson-card">
-                    <h3>プライベートレッスン</h3>
-                    <div class="lesson-target">対象：1対1で集中したい方</div>
-                    <p class="lesson-desc">周りを気にせず、自分の課題に集中して取り組みたい方向け。フォーム解析、球出し練習、ラリー、試合形式など完全オーダーメイドで行います。</p>
-                    <div class="lesson-price">¥10,000</div>
-                    <div class="lesson-time">/ 60分 (コート代別)</div>
+            <div
+                style="background: var(--white); border-radius: 10px; padding: 40px 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); max-width: 800px; margin: 0 auto;">
+
+                <h3
+                    style="text-align: center; font-size: 1.6rem; color: var(--primary-navy); margin-bottom: 30px; border-bottom: 2px solid var(--accent-blue); padding-bottom: 15px; display: inline-block; position: relative; left: 50%; transform: translateX(-50%);">
+                    プライベートレッスン料金
+                </h3>
+
+                <!-- 料金プランリスト -->
+                <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px;">
+                    <!-- 1時間 -->
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background-color: var(--light-gray); border-radius: 8px;">
+                        <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark);">1時間</span>
+                        <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-navy);">税込
+                            ¥12,000</span>
+                    </div>
+                    <!-- 1.5時間 -->
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background-color: var(--light-gray); border-radius: 8px;">
+                        <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark);">1時間30分</span>
+                        <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-navy);">税込
+                            ¥16,000</span>
+                    </div>
+                    <!-- 2時間 -->
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background-color: var(--light-gray); border-radius: 8px;">
+                        <span style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark);">2時間</span>
+                        <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-navy);">税込
+                            ¥20,000</span>
+                    </div>
                 </div>
 
-                <div class="lesson-card">
-                    <h3>ジュニアレッスン</h3>
-                    <div class="lesson-target">対象：小学生〜高校生</div>
-                    <p class="lesson-desc">テニスの楽しさを伝えながら、将来につながる基礎体力と正しいフォームを身につけます。年齢やレベルに合わせて指導します。</p>
-                    <div class="lesson-price">¥10,000</div>
-                    <div class="lesson-time">/ お一人様 90分 (コート代別)</div>
-                </div>
-
-                <div class="lesson-card">
-                    <h3>出張・ヒッティング</h3>
-                    <div class="lesson-target">対象：サークル・部活動・試合相手</div>
-                    <p class="lesson-desc">指定のコートまでお伺いし、指導体制の構築や、質の高いヒッティングパートナーを務めます。練習メニューの考案もお任せください。</p>
-                    <div class="lesson-price">¥10,000</div>
-                    <div class="lesson-time">/ 120分〜 (交通費・コート代別)</div>
+                <!-- 注意事項（お約束事項） -->
+                <div
+                    style="background-color: #f8f9fa; border-left: 5px solid var(--accent-green); padding: 20px; border-radius: 4px;">
+                    <h4 style="margin-bottom: 15px; color: var(--primary-navy); font-size: 1.1rem;">【ご確認ください】</h4>
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 0;">
+                        <li style="margin-bottom: 10px; padding-left: 20px; text-indent: -20px;">※
+                            <strong>交通費、ボール代込み</strong>の金額です。
+                        </li>
+                        <li style="margin-bottom: 10px; padding-left: 20px; text-indent: -20px;">※
+                            <strong>人数制限はありません</strong>。ご友人同士でのグループレッスンも同料金でお受けします。
+                        </li>
+                        <li style="margin-bottom: 0; padding-left: 20px; text-indent: -20px;">※
+                            コートはお客様がご指定の場所（神奈川〜東京近辺）へ伺います。<br>　 コートのご予約・お支払いはお客様ご自身でお願いいたします。</li>
+                        <li style="margin-top: 10px; margin-bottom: 0; padding-left: 20px; text-indent: -20px;">※
+                            <strong>一部地域によっては価格が変動いたします。</strong>
+                        </li>
+                        <li
+                            style="margin-top: 10px; margin-bottom: 0; padding-left: 20px; text-indent: -20px; color: var(--primary-navy); font-weight: bold;">
+                            ※
+                            イベントレッスン・合宿等での1日の拘束なども可能です。別途ご相談ください。</li>
+                    </ul>
                 </div>
 
             </div>
+        </div>
     </section>
 
-    <section id="contact" class="bg-light">
+    <section id="voice">
+        <div class="container">
+            <h2 class="section-title">お客様の声</h2>
+
+            <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+
+                    <!-- 声 1: 70代男性 -->
+                    <div
+                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
+                        <div
+                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span
+                                style="background-color: var(--accent-blue); padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">70代
+                                男性</span>
+                            <span style="font-size: 1.1rem;">もっと早くコーチから教わりたかった</span>
+                        </div>
+                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                            「長年自己流でテニスを楽しんできましたが、体力的な衰えもあって伸び悩んでいました。熊谷コーチに体の使い方から論理的に見直してもらったところ、少ない力でも驚くほどボールが飛ぶように。年齢を重ねてからでもテニスは進化できるのだと実感しました。もっと早く出会って教わりたかったです。」
+                        </p>
+                    </div>
+
+                    <!-- 声 2: 60代男性 -->
+                    <div
+                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
+                        <div
+                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span
+                                style="background-color: var(--accent-blue); padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">60代
+                                男性</span>
+                            <span style="font-size: 1.1rem;">これまでに無い新感覚を得られて、目から鱗が落ちた</span>
+                        </div>
+                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                            「今まで色々なコーチのレッスンを受けてきましたが、トップで活躍されていた熊谷コーチのアドバイスは視点が全く違いました。自分の中にあった固定観念が覆り、まさに目から鱗が落ちるような新感覚の連続です。毎回のレッスンで新しい発見があり、コートに立つのが待ち遠しいです。」
+                        </p>
+                    </div>
+
+                    <!-- 声 3: 50代女性 -->
+                    <div
+                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
+                        <div
+                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span
+                                style="background-color: var(--accent-green); padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">50代
+                                女性</span>
+                            <span style="font-size: 1.1rem;">技術とメンタルの両輪で指導。試合が楽しくなりました</span>
+                        </div>
+                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                            「試合になるとどうしても緊張して本来のプレーができずにいました。技術面の的確なアドバイスはもちろんですが、試合に向けたメンタルの作り方や課題に対するアプローチ方法まで深く教えていただけたことで、今では試合に出るのがとても楽しいです。頼りになるコーチです。」
+                        </p>
+                    </div>
+
+                    <!-- 声 4: 10代男性 -->
+                    <div
+                        style="background: var(--white); border-radius: 10px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); position: relative;">
+                        <div
+                            style="font-weight: bold; color: var(--primary-navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span
+                                style="background-color: #f39c12; padding: 5px 12px; border-radius: 20px; color: var(--white); font-size: 0.85rem;">10代
+                                男性</span>
+                            <span style="font-size: 1.1rem;">実際の試合で活かせる内容で、勝率が上がった！</span>
+                        </div>
+                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                            「ただ綺麗なフォームで打つ練習ではなく、『どうすればポイントが取れるか』という実践的な展開や戦術を教わることができます。元日本代表の世界レベルの球を受けられるのも凄く刺激になりますし、アドバイス通りの配球を意識しただけで、実際の大会での勝率が目に見えて上がりました！」
+                        </p>
+                    </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+                
+                <!-- Q1 -->
+                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
+                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
+                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">全くの初心者でも大丈夫ですか？</h3>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                        <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                            もちろん大丈夫です！ラケットの握り方のような基礎から、丁寧に分かりやすく指導いたします。初心者の方こそ、最初から正しいフォームを身につけることで、その後の上達が格段に早くなります。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
+                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
+                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">コートの予約はお願いできますか？</h3>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                        <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                            基本的にはお客様ご自身での手配をお願いしております。ご指定いただいた指定のコート（神奈川〜東京近辺）へお伺いいたします。もしコート予約の仕方が分からない場合は、お気軽にご相談ください。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
+                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
+                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">友人や家族と一緒に受けることは可能ですか？</h3>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                        <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                            はい、可能です。人数制限は設けておらず、追加料金もいただいておりません（時間あたりの料金のみとなります）。ご家族やご友人とのグループレッスン・ペアレッスンも大歓迎です。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
+                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
+                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">雨で中止になった場合、料金はどうなりますか？</h3>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                        <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                            悪天候によってレッスンが実施できなかった場合、レッスン料金は一切かかりませんのでご安心ください。（ただし、コートのキャンセル料等が発生する場合はお客様のご負担となりますこと、ご了承ください）
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div style="background: var(--white); border-radius: 10px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 15px;">
+                        <span style="color: var(--accent-blue); font-size: 1.4rem; font-weight: bold; line-height: 1;">Q.</span>
+                        <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin: 0; line-height: 1.4;">年齢制限はありますか？（子供でも受けられますか？）</h3>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #eee;">
+                        <span style="color: var(--accent-green); font-size: 1.4rem; font-weight: bold; line-height: 1;">A.</span>
+                        <p style="color: var(--text-dark); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                            年齢制限はありません。ジュニア選手からシニアの方まで幅広い年代の方にご受講いただいています。お子様へのレッスンも大歓迎です！
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
         <div class="contact-container">
             <h2 class="section-title">お問い合わせ</h2>
             <p class="contact-desc">
-                体験レッスンのご予約や、レッスンに関するご相談はお気軽に公式LINEよりお問い合わせください。<br>
+                レッスンに関するご予約やご相談は、お気軽にメールにてお問い合わせください。<br>
                 些細な疑問でも大歓迎です！
             </p>
-            <a href="#" class="btn btn-green">LINEでお問い合わせ（おすすめ）</a>
+            <a href="mailto:kumagae.tennis@gmail.com" class="btn">メールでお問い合わせ</a>
             <div style="margin-top: 30px; font-size: 0.9rem; color: var(--text-light);">
-                営業時間: 9:00 - 21:00 (不定休)<br>
-                メール：info@example.com
+                メール：kumagae.tennis@gmail.com
             </div>
         </div>
     </section>
