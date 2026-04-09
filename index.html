@@ -81,6 +81,15 @@
             background-color: #48c783;
         }
 
+        .btn-line {
+            background-color: #06C755;
+            color: white;
+        }
+        
+        .btn-line:hover {
+            background-color: #05b04b;
+        }
+
         /* Header / Nav */
         header {
             position: fixed;
@@ -497,6 +506,9 @@
         <div class="hero-content container">
             <h1><span style="white-space: nowrap;">あなたのテニスを</span><br><span style="white-space: nowrap;">もっと楽しく、もっと上へ。</span></h1>
             <p><span style="white-space: nowrap;">初心者からトーナメント出場者まで、</span><br><span style="white-space: nowrap;">完全オーダーメイドのレッスン</span></p>
+            <div style="margin-top: 30px; display: flex; justify-content: center;">
+                <a href="https://lin.ee/wvXLTkB" target="_blank" rel="noopener noreferrer" class="btn btn-line" style="font-size: 1.1rem; padding: 15px 35px; box-shadow: 0 6px 12px rgba(0,0,0,0.2);">💬 公式LINEで無料相談・予約する</a>
+            </div>
         </div>
     </section>
 
@@ -897,16 +909,30 @@
     </section>
 
     <section id="contact">
-        <div class="contact-container">
+        <div class="contact-container" style="max-width: 700px;">
             <h2 class="section-title">お問い合わせ</h2>
-            <p class="contact-desc">
-                レッスンに関するご予約やご相談は、<br>お気軽にメールにてお問い合わせください。<br>
-                些細な疑問でも大歓迎です！
+            <p class="contact-desc" style="margin-bottom: 30px;">
+                レッスンに関するご相談やご予約は、公式LINEまたはメールにて承っております。<br>
+                「ちょっと質問したいだけ」といった些細な疑問でも大歓迎です！
             </p>
-            <a href="mailto:kumagae.tennis@gmail.com" class="btn">メールでお問い合わせ</a>
-            <div style="margin-top: 30px; font-size: 0.9rem; color: var(--text-light);">
-                メール：kumagae.tennis@gmail.com
+
+            <!-- LINEでのお問い合わせ -->
+            <div style="margin-bottom: 20px;">
+                <a href="https://lin.ee/wvXLTkB" target="_blank" rel="noopener noreferrer" class="btn btn-line" style="font-size: 1.2rem; padding: 15px 40px; display: inline-block; width: 100%; max-width: 350px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    💬 公式LINEでお問い合わせ
+                </a>
             </div>
+
+            <!-- メールでのお問い合わせ -->
+            <div>
+                <a href="mailto:kumagae.tennis@gmail.com" class="btn" style="font-size: 1rem; padding: 12px 30px; background-color: #7b8c9e; display: inline-block; width: 100%; max-width: 350px;">
+                    ✉️ メールでお問い合わせ
+                </a>
+                <div style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">
+                    kumagae.tennis@gmail.com
+                </div>
+            </div>
+
         </div>
     </section>
 
